@@ -1,5 +1,6 @@
 package com.example.spotifyapp;
 
+import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -9,6 +10,7 @@ import com.spotify.android.appremote.api.error.UserNotAuthorizedException;
 
 
 import android.util.Log;
+import android.widget.ImageView;
 
 import com.spotify.android.appremote.api.ConnectionParams;
 import com.spotify.android.appremote.api.Connector;
@@ -20,7 +22,7 @@ import com.spotify.protocol.types.Track;
 
 public class MainActivity extends AppCompatActivity {
     private static final String CLIENT_ID = "2f184ad41615437489cfd03177eade83";
-    private static final String REDIRECT_URI = "https://com.example.spotifyapp/callback/";
+    private static final String REDIRECT_URI = "com.example.spotifyapp://callback/";
     private SpotifyAppRemote mSpotifyAppRemote;
 
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,6 +32,7 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
+    //testtest
     @Override
     protected void onStart() {
         super.onStart();
@@ -45,6 +48,7 @@ public class MainActivity extends AppCompatActivity {
                     public void onConnected(SpotifyAppRemote spotifyAppRemote) {
                         mSpotifyAppRemote = spotifyAppRemote;
                         Log.d("MainActivity", "Connected! Yay!");
+
 
                         // Now you can start interacting with App Remote
                         connected();

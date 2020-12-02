@@ -5,7 +5,7 @@ plugins {
 android {
     compileSdkVersion 30
     buildToolsVersion "30.0.2"
-
+    //compile 'com.spotify.android:auth:1.2.3'
     defaultConfig {
         applicationId "com.example.spotifyapp"
         minSdkVersion 16
@@ -27,7 +27,15 @@ android {
         targetCompatibility JavaVersion.VERSION_1_8
     }
 }
+repositories {
+    mavenCentral()
+    flatDir {
+        dirs 'libs'
+    }
+    jcenter()
+    google()
 
+}
 dependencies {
 
     implementation 'androidx.appcompat:appcompat:1.2.0'
@@ -35,7 +43,10 @@ dependencies {
     implementation project(':spotify-app-remote-release-0.7.1')
     implementation "com.google.code.gson:gson:2.8.5"
     implementation 'androidx.constraintlayout:constraintlayout:2.0.4'
+    implementation 'com.spotify.android:auth:1.2.3'
+    implementation 'com.squareup.okhttp3:okhttp:3.12.3'
     testImplementation 'junit:junit:4.+'
     androidTestImplementation 'androidx.test.ext:junit:1.1.2'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.3.0'
+
 }
