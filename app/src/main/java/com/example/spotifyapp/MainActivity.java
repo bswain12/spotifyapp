@@ -8,7 +8,6 @@ import com.spotify.android.appremote.api.error.CouldNotFindSpotifyApp;
 import com.spotify.android.appremote.api.error.NotLoggedInException;
 import com.spotify.android.appremote.api.error.UserNotAuthorizedException;
 
-
 import android.util.Log;
 import android.widget.ImageView;
 
@@ -19,6 +18,10 @@ import com.spotify.android.appremote.api.SpotifyAppRemote;
 import com.spotify.protocol.client.Subscription;
 import com.spotify.protocol.types.PlayerState;
 import com.spotify.protocol.types.Track;
+
+import com.squareup.picasso.Callback;
+import com.squareup.picasso.Picasso;
+import com.squareup.picasso.Target;
 
 public class MainActivity extends AppCompatActivity {
     private static final String CLIENT_ID = "2f184ad41615437489cfd03177eade83";
@@ -70,6 +73,10 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void connected() {
+        // Find album cover using Picasso
+        ImageView album_artwork = (ImageView) findViewById(R.id.album_artwork);
+        Picasso.get().load("https://i.scdn.co/image/b2163e7456f3d618a0e2a4e32bc892d6b11ce673").into(album_artwork);
+
         // Play a playlist
         mSpotifyAppRemote.getPlayerApi().play("spotify:playlist:37i9dQZF1DX2sUQwD7tbmL");
 
@@ -80,6 +87,7 @@ public class MainActivity extends AppCompatActivity {
                     final Track track = playerState.track;
                     if (track != null) {
                         Log.d("MainActivity", track.name + " by " + track.artist.name);
+                        album_artwork.setImageResource(track.imageUri.hashCode());
                     }
                 });
     }
